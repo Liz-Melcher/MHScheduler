@@ -1,8 +1,15 @@
 import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 import { Pool } from 'pg';
 
 // Load environment variables from server/.env
 dotenv.config();
+
+console.log('🔍 ENV loaded:');
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+
 
 // Create a PostgreSQL connection pool
 const pool = new Pool({
@@ -12,6 +19,8 @@ const pool = new Pool({
   port: Number(process.env.DB_PORT),
   database: process.env.DB_NAME
 });
+
+
 
 // Optional: Test the connection immediately
 pool.connect()
