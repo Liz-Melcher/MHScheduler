@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import pool from './db/connection';
+import cors from 'cors';
 
 // Load environment variables from .env
 dotenv.config();
@@ -9,6 +10,7 @@ const app = express();
 
 // Middleware
 app.use(express.json()); // for parsing application/json
+app.use(cors()); // Enable CORS for all routes
 
 // Test route: Get all companies
 app.get('/api/companies', async (req, res) => {

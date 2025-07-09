@@ -1,12 +1,9 @@
 import fs from 'fs';
 import dotenv from 'dotenv';
 import path from 'path';
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
 import { Pool } from 'pg';
 
-const envPath = path.resolve(__dirname, '../.env');
-console.log('Looking for .env at:', envPath);
-console.log('File exists:', fs.existsSync(envPath));
 
 // Load environment variables from server/.env
 dotenv.config();
