@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import pool from './db/connection';
 import cors from 'cors';
+import helloRoutes from './src/routes/hello';
 
 // Load environment variables from .env
 dotenv.config();
@@ -11,6 +12,8 @@ const app = express();
 // Middleware
 app.use(express.json()); // for parsing application/json
 app.use(cors()); // Enable CORS for all routes
+
+app.use('/api/hello', helloRoutes);
 
 // Test route: Get all companies
 app.get('/api/companies', async (req, res) => {

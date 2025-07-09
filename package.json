@@ -6,6 +6,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
+    "dev:server": "ts-node server/server.ts",
+    "dev:client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "db:init": "ts-node server/db/init.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,9 +30,10 @@
     "pg": "^8.16.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/pg": "^8.15.4",
-    "nodemon": "^3.1.10",
+    "concurrently": "^9.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
