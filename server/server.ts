@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import pool from './db/connection';
 import cors from 'cors';
 import helloRoutes from './src/routes/hello';
+import companyRoutes from './src/routes/companies';
+
 
 // Load environment variables from .env
 dotenv.config();
@@ -14,17 +16,9 @@ app.use(express.json()); // for parsing application/json
 app.use(cors()); // Enable CORS for all routes
 
 app.use('/api/hello', helloRoutes);
+app.use('/api/companies', companyRoutes);
 
-// Test route: Get all companies
-app.get('/api/companies', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM companies');
-    res.json(result.rows);
-  } catch (err) {
-    console.error('Error fetching companies:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+
 
 // Default route
 app.get('/', (req, res) => {
